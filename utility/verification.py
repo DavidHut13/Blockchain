@@ -19,7 +19,7 @@ class Verification:
     @staticmethod
     def verify_transaction(transaction,get_balance, check_funds=True):
         if check_funds:
-            sender_balance = get_balance()
+            sender_balance = get_balance(transaction.sender)
             return sender_balance >= transaction.amount and Wallet.verify_transaction(transaction)
         else:
             return Wallet.verify_transaction(transaction)
@@ -32,5 +32,4 @@ class Verification:
     def valid_proof(transactions,last_hash,proof):
         guess = (str([tx.to_ordered_dict() for tx in transactions]) + str(last_hash) + str(proof)).encode()
         guess_hash = hash_string_265(guess)
-        print(guess_hash)
         return guess_hash[0:2] == '00'

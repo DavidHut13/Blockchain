@@ -1,1 +1,5 @@
-import Pycryptodome
+#Packages that need to be installed are below
+# Pycryptodome
+# Flask
+# Flask-core
+#requests
